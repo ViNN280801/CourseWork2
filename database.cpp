@@ -8,8 +8,7 @@ DataBase::DataBase(QObject *parent) : QObject(parent)
 
 }
 
-DataBase::~DataBase()
-{
+DataBase::~DataBase(){
     saved.clear();
 }
 
@@ -19,6 +18,16 @@ DataBaseReadMethods::DataBaseReadMethods(QObject *parent) : DataBase(parent)
 }
 
 DataBaseReadMethods::~DataBaseReadMethods()
+{
+
+}
+
+SortMethods::SortMethods(QObject *parent) : DataBaseReadMethods(parent)
+{
+
+}
+
+SortMethods::~SortMethods()
 {
 
 }
@@ -677,7 +686,7 @@ void DataBase::undoMethod(){
 
     QMessageBox msgBox;
     msgBox.setWindowTitle("Отмена действий");
-    msgBox.setText("Отмена поиска произошла успешно!");
+    msgBox.setText("Отмена предыдущих действий произошла успешно!");
     msgBox.exec();
 }
 
@@ -781,4 +790,239 @@ void DataBase::setSaved(QVariantList savedData){
 
 QVariantList DataBase::getSaved(){
     return saved;
+}
+
+void SortMethods::sortingByWeekday(){
+    QVariantList sortedDataByWeekday;
+
+    this->connectToWeatherDataBase();
+
+    int countOfRecords = this->checkWeatherDataBaseCountOfRecords();
+
+    QSqlQuery query;
+    QString sqlQuery = QString(" SELECT * "
+                               " FROM " TABLE_WEATHER
+                               " ORDER BY " TABLE_WEEKDAY);
+    query.prepare(sqlQuery);
+    query.exec();
+    query.next();
+
+    for(int j = 0; j < countOfRecords; j++){
+        for(int i = 0; i < 6; i++){
+            if(query.value(i + 1).toString() != nullptr)
+                sortedDataByWeekday.append(query.value(i + 1));
+        }
+        query.next();
+    }
+
+    this->backupDataFromWeatherDB();
+
+    this->deleteAllWeatherRecords();
+    this->createWeatherTable();
+
+    QVariantList copyData;
+
+    for(int i = 1; i <= saved.size(); i++){
+        copyData.append(sortedDataByWeekday.value(i - 1));
+
+        if(i % 5 == 0){
+            this->insertIntoWeatherTable(copyData);
+            copyData.clear();
+        }
+    }
+
+    sortedDataByWeekday.clear();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Сортировка по дням недели");
+    msgBox.setText("Данные были отсортированы по дням недели.");
+    msgBox.exec();
+}
+
+void SortMethods::sortingByDate(){
+    QVariantList sortedDataByDate;
+
+    this->connectToWeatherDataBase();
+
+    int countOfRecords = this->checkWeatherDataBaseCountOfRecords();
+
+    QSqlQuery query;
+    QString sqlQuery = QString(" SELECT * "
+                               " FROM " TABLE_WEATHER
+                               " ORDER BY " TABLE_DATE);
+    query.prepare(sqlQuery);
+    query.exec();
+    query.next();
+
+    for(int j = 0; j < countOfRecords; j++){
+        for(int i = 0; i < 6; i++){
+            if(query.value(i + 1).toString() != nullptr)
+                sortedDataByDate.append(query.value(i + 1));
+        }
+        query.next();
+    }
+
+    this->backupDataFromWeatherDB();
+
+    this->deleteAllWeatherRecords();
+    this->createWeatherTable();
+
+    QVariantList copyData;
+
+    for(int i = 1; i <= saved.size(); i++){
+        copyData.append(sortedDataByDate.value(i - 1));
+
+        if(i % 5 == 0){
+            this->insertIntoWeatherTable(copyData);
+            copyData.clear();
+        }
+    }
+
+    sortedDataByDate.clear();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Сортировка по дате");
+    msgBox.setText("Данные были отсортированы по дате.");
+    msgBox.exec();
+}
+
+void SortMethods::sortingByMonth(){
+    QVariantList sortedDataByMonth;
+
+    this->connectToWeatherDataBase();
+
+    int countOfRecords = this->checkWeatherDataBaseCountOfRecords();
+
+    QSqlQuery query;
+    QString sqlQuery = QString(" SELECT * "
+                               " FROM " TABLE_WEATHER
+                               " ORDER BY " TABLE_MONTH);
+    query.prepare(sqlQuery);
+    query.exec();
+    query.next();
+
+    for(int j = 0; j < countOfRecords; j++){
+        for(int i = 0; i < 6; i++){
+            if(query.value(i + 1).toString() != nullptr)
+                sortedDataByMonth.append(query.value(i + 1));
+        }
+        query.next();
+    }
+
+    this->backupDataFromWeatherDB();
+
+    this->deleteAllWeatherRecords();
+    this->createWeatherTable();
+
+    QVariantList copyData;
+
+    for(int i = 1; i <= saved.size(); i++){
+        copyData.append(sortedDataByMonth.value(i - 1));
+
+        if(i % 5 == 0){
+            this->insertIntoWeatherTable(copyData);
+            copyData.clear();
+        }
+    }
+
+    sortedDataByMonth.clear();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Сортировка по месяцу");
+    msgBox.setText("Данные были отсортированы по месяцу.");
+    msgBox.exec();
+}
+
+void SortMethods::sortingByGeneralCharacteristics(){
+    QVariantList sortedDataByGeneralCharacteristics;
+
+    this->connectToWeatherDataBase();
+
+    int countOfRecords = this->checkWeatherDataBaseCountOfRecords();
+
+    QSqlQuery query;
+    QString sqlQuery = QString(" SELECT * "
+                               " FROM " TABLE_WEATHER
+                               " ORDER BY " TABLE_LABEL);
+    query.prepare(sqlQuery);
+    query.exec();
+    query.next();
+
+    for(int j = 0; j < countOfRecords; j++){
+        for(int i = 0; i < 6; i++){
+            if(query.value(i + 1).toString() != nullptr)
+                sortedDataByGeneralCharacteristics.append(query.value(i + 1));
+        }
+        query.next();
+    }
+
+    this->backupDataFromWeatherDB();
+
+    this->deleteAllWeatherRecords();
+    this->createWeatherTable();
+
+    QVariantList copyData;
+
+    for(int i = 1; i <= saved.size(); i++){
+        copyData.append(sortedDataByGeneralCharacteristics.value(i - 1));
+
+        if(i % 5 == 0){
+            this->insertIntoWeatherTable(copyData);
+            copyData.clear();
+        }
+    }
+
+    sortedDataByGeneralCharacteristics.clear();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Сортировка по характеристикам");
+    msgBox.setText("Данные были отсортированы по основным характеристикам.");
+    msgBox.exec();
+}
+
+void SortMethods::sortingByTemperature(){
+    QVariantList sortedDataByTempreature;
+
+    this->connectToWeatherDataBase();
+
+    int countOfRecords = this->checkWeatherDataBaseCountOfRecords();
+
+    QSqlQuery query;
+    QString sqlQuery = QString(" SELECT * "
+                               " FROM " TABLE_WEATHER
+                               " ORDER BY " TABLE_TEMPERATURE);
+    query.prepare(sqlQuery);
+    query.exec();
+    query.next();
+
+    for(int j = 0; j < countOfRecords; j++){
+        for(int i = 0; i < 6; i++){
+            if(query.value(i + 1).toString() != nullptr)
+                sortedDataByTempreature.append(query.value(i + 1));
+        }
+        query.next();
+    }
+
+    this->backupDataFromWeatherDB();
+
+    this->deleteAllWeatherRecords();
+    this->createWeatherTable();
+
+    QVariantList copyData;
+
+    for(int i = 1; i <= saved.size(); i++){
+        copyData.append(sortedDataByTempreature.value(i - 1));
+
+        if(i % 5 == 0){
+            this->insertIntoWeatherTable(copyData);
+            copyData.clear();
+        }
+    }
+
+    sortedDataByTempreature.clear();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Сортировка по температуре");
+    msgBox.setText("Данные были отсортированы по температуре.");
+    msgBox.exec();
 }

@@ -25,6 +25,7 @@ SOURCES += \
     mainwindow.cpp \
     modifyweatherrecord.cpp \
     searchrecord.cpp \
+    sorting.cpp \
     usersediditing.cpp
 
 HEADERS += \
@@ -39,6 +40,7 @@ HEADERS += \
     mainwindow.h \
     modifyweatherrecord.h \
     searchrecord.h \
+    sorting.h \
     usersediditing.h
 
 FORMS += \
@@ -50,6 +52,7 @@ FORMS += \
     mainwindow.ui \
     modifyweatherrecord.ui \
     searchrecord.ui \
+    sorting.ui \
     usersediditing.ui
 
 TRANSLATIONS += \

@@ -203,6 +203,19 @@
     <string>Отменить</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="sortingPushButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>210</y>
+     <width>101</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сортировка</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

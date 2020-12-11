@@ -74,6 +74,7 @@ void loginning::on_signInButton_clicked()
                     mainDB->getModifyButton()->hide();
                     mainDB->getSearchButton()->show();
                     mainDB->getUndoButton()->show();
+                    mainDB->getSortingButton()->show();
                     mainDB->getLabel()->setText("Панель управления пользователя " +
                                                 ui->loginLineEdit->text());
                     mainDB->show();

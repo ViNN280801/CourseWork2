@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Sorting</class>
+ <widget class="QWidget" name="Sorting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>353</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>353</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>353</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Сортировка</string>
+  </property>
+  <widget class="QPushButton" name="sortByWeekdayButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>20</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отсортировать по дням недели</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sortByDateButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>70</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отсортировать по дате</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sortByMonth">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>120</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отсортировать по месяцам</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sortByGenChButton">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>170</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отсортировать по характеристикам</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="sortByTemperature">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>220</y>
+     <width>241</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Отсортировать по температуре</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -27,9 +27,13 @@ MainDataBase::MainDataBase(QWidget *parent) :
     ui->decodeButton->setEnabled(false);
     ui->searchButton->hide();
     ui->undoPushButton->hide();
+    ui->sortingPushButton->hide();
 
     search = new SearchRecord();
     connect(search, &SearchRecord::showWindow, this, &MainDataBase::show);
+
+    sort = new Sorting();
+    connect(sort, &Sorting::showWindow, this, &MainDataBase::show);
 }
 
 MainDataBase::~MainDataBase()
@@ -67,6 +71,10 @@ QPushButton *MainDataBase::getUndoButton(){
 
 QLabel *MainDataBase::getLabel(){
     return ui->label;
+}
+
+QPushButton *MainDataBase::getSortingButton(){
+    return ui->sortingPushButton;
 }
 
 void MainDataBase::connectToDataBase()
@@ -365,4 +373,10 @@ void MainDataBase::on_searchButton_clicked()
 void MainDataBase::on_undoPushButton_clicked()
 {
     weatherDB->undoMethod();
+}
+
+void MainDataBase::on_sortingPushButton_clicked()
+{
+    sort->show();
+    ui->undoPushButton->setEnabled(true);
 }

@@ -28,6 +28,7 @@
 #include "deleteweatherrecord.h"
 #include "modifyweatherrecord.h"
 #include "searchrecord.h"
+#include "sorting.h"
 
 namespace Ui {
 class MainDataBase;
@@ -62,7 +63,6 @@ public:
 
     void xor_encryption(const std::string &key, std::string &str);
 
-
     QPushButton *getAddNewButton();
     QPushButton *getEncodeButton();
     QPushButton *getDecodeButton();
@@ -70,6 +70,7 @@ public:
     QPushButton *getModifyButton();
     QPushButton *getSearchButton();
     QPushButton *getUndoButton();
+    QPushButton *getSortingButton();
     QLabel *getLabel();
 
 private slots:
@@ -93,6 +94,8 @@ private slots:
 
     void on_undoPushButton_clicked();
 
+    void on_sortingPushButton_clicked();
+
 private:
     Ui::MainDataBase *ui;
 
@@ -103,6 +106,7 @@ private:
     DeleteWeatherRecord *deleteWeather;
     ModifyWeatherRecord *modifyRecord;
     SearchRecord *search;
+    Sorting *sort;
 
     const char* key = "!#*($U()RI{<#FR#asdgnyu56UH@E#kkI@23FVS-ENJOY";
 };

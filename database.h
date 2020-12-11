@@ -100,4 +100,17 @@ public:
     QVariantList readMonthFromWeatherSqlFileToQVariantList(QString month);
 };
 
+class SortMethods : public DataBaseReadMethods{
+    Q_OBJECT
+public:
+    explicit SortMethods(QObject *parent = 0);
+    virtual ~SortMethods();
+
+    void sortingByWeekday();
+    void sortingByDate();
+    void sortingByMonth();
+    void sortingByGeneralCharacteristics();
+    void sortingByTemperature();
+};
+
 #endif // DATABASE_H
