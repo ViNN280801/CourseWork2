@@ -19,7 +19,8 @@ void DeleteWeatherRecord::on_deletePushButton_clicked()
 {
     int id = ui->IDLineEdit->text().toInt();
 
-    if(id > 0 && id <= db->checkWeatherDataBaseCountOfRecords()){
+    if((id > 0 && id <= db->checkWeatherDataBaseCountOfRecords()) ||
+            db->checkingForIDInWeatherDB(ui->IDLineEdit->text().toInt())){
         if(ui->IDLineEdit->text() != nullptr){
             db->deleteWeatherRecordByID(id);
 
@@ -36,7 +37,7 @@ void DeleteWeatherRecord::on_deletePushButton_clicked()
         }
     }
     else if(id > db->checkWeatherDataBaseCountOfRecords()){
-        QMessageBox::warning(this, "Внимание", "ID не может быть меньше или равно 0.");
+        QMessageBox::warning(this, "Внимание", "Некорректно введен ID.");
     }
     else{
         QMessageBox::warning(this, "Внимание", "Произошла неизвестная ошибка!");

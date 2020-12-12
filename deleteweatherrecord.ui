@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Delete Weather Record</string>
+   <string>Удаление записи</string>
   </property>
   <widget class="QPushButton" name="deletePushButton">
    <property name="geometry">
@@ -35,7 +35,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>Удалить</string>
    </property>
   </widget>
   <widget class="QPushButton" name="deleteAllPushButton">
