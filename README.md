@@ -1,4 +1,4 @@
-# CourseWork2
+# ETU Course Work 2 (DB Application)
 Qt/C++ DB Application
 The purpose of the work is to gain skills in problem setting, algorithmization, modular principle of application development and debugging on the example of creating a program with a user interface for working with a database.
 As databases, I create 2 files that are not related to each other in any way. In which one table with data is stored. The files have the extension .sql. The table in the first file contains information about users (ID, login and password). The table in the second file contains weather data (ID, day of the week, date, month, main characteristics, and temperature). I created two files for clarity, but, of course, it was possible to do everything in one file, just do not set the relationship between the tables.
